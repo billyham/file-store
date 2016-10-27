@@ -37,11 +37,11 @@ const elements = [
   }
 ];
 describe('adding and removing files', function(){
- 
+
   before(function(done){
     scrap.scrapFiles('elements', done);
   });
- 
+
   it('creates a new directory', function(done){
     function test() {
       console.log('test 1 running');
@@ -51,14 +51,14 @@ describe('adding and removing files', function(){
     };
     store.saveFile(elements, 'elements', test);
   });
-    
+
   it('creates JSON files in the directory whose contents are equal to the original content when parsed', function(done){
     function secondTest(arr) {
       console.log('test 2 running');
       assert.deepEqual(elements, arr);
       done();
-    };  
-    get.mergeAllFiles('elements', secondTest);  
+    };
+    get.mergeAllFiles('elements', secondTest);
   });
 
   it('finds JSON files for only the specified elements', function(done){
@@ -66,23 +66,23 @@ describe('adding and removing files', function(){
       console.log('test 3 running');
       assert.deepEqual([{name: "helium", number: 2, mass: 4, symbol: "He"}, {name: "Beryllium", number: 4, mass: 9,symbol: "Be"}], arr);
       done();
-    };  
-    get.findFiles(['beryllium', 'helium'], thirdTest);  
+    };
+    get.findFiles(['beryllium', 'helium'], thirdTest);
   });
   it('finds a JSON file for a single specified element', function(done){
     function fourthTest(arr) {
       console.log('test 4 running');
       assert.deepEqual([{name: "Beryllium", number: 4, mass: 9,symbol: "Be"}], arr);
       done();
-    };  
-    get.findFiles(['beryllium'], fourthTest);  
+    };
+    get.findFiles(['beryllium'], fourthTest);
   });
   it('finds all files in the elements directory', function(done){
     function fifthTest(filenames) {
       assert.deepEqual([ 'Beryllium.json','Boron.json','helium.json','hydrogen.json','lithium.json' ], filenames);
       done();
-    };  
-    get.findAllFiles('elements', fifthTest);  
+    };
+    get.findAllFiles('elements', fifthTest);
   });
 
   it('deletes the elements directory when done', function(done){
@@ -104,13 +104,9 @@ describe('adding and removing files', function(){
           done();
         }
       });
-    };  
+    };
     scrap.scrapFiles('elements', sixthTest);
   });
-
+  // Dave is great
 
 });
-
-
-
-
